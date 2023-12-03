@@ -18,6 +18,7 @@ function SuggestedHeader() {
         color={"blue.400"}
         cursor={"pointer"}
         style={{ textDecoration: "none" }}
+        _hover={{ color: "white" }}
       >
         Log Out
       </Link>
