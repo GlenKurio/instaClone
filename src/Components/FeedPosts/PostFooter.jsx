@@ -14,7 +14,7 @@ import {
   UnlikeLogo,
 } from "../../assets/constants";
 
-function PostFooter({ username }) {
+function PostFooter({ username, isProfilePage }) {
   const [liked, setLiked] = useState(false);
   const [likes, setLikes] = useState(100);
   function handleLike() {
@@ -28,7 +28,7 @@ function PostFooter({ username }) {
   }
 
   return (
-    <>
+    <Box mb={10} marginTop={"auto"}>
       <Flex alignItems={"center"} gap={1} w={"full"} pt={4} mt={"auto"}>
         <Box onClick={handleLike} cursor={"pointer"} fontSize={10}>
           {!liked ? <NotificationsLogo /> : <UnlikeLogo />}
@@ -43,16 +43,19 @@ function PostFooter({ username }) {
           1000
         </Text>
       </Flex>
-      <Text fontSize="sm" fontWeight={"700"} mt={2}>
-        {username}
-        <Text as="span" fontWeight={400} ml={2}>
-          Feeling Good ...
-        </Text>
-      </Text>
-      <Text fontSize="sm" color={"gray"}>
-        View all 1,000 comments
-      </Text>
-
+      {!isProfilePage && (
+        <>
+          <Text fontSize="sm" fontWeight={"700"} mt={2}>
+            {username}
+            <Text as="span" fontWeight={400} ml={2}>
+              Feeling Good ...
+            </Text>
+          </Text>
+          <Text fontSize="sm" color={"gray"}>
+            View all 1,000 comments
+          </Text>
+        </>
+      )}
       <Flex
         alignItems={"center"}
         gap={2}
@@ -79,7 +82,7 @@ function PostFooter({ username }) {
           </InputRightElement>
         </InputGroup>
       </Flex>
-    </>
+    </Box>
   );
 }
 
