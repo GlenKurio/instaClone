@@ -15,7 +15,7 @@ function useSignupWithEmailAndPassword() {
   const [createUserWithEmailAndPassword, , loading, error] =
     useCreateUserWithEmailAndPassword(auth);
   const showToast = useShowToast();
-  const loginUser = useAuthStore((state) => state.login);
+  const loggedinUser = useAuthStore((state) => state.login);
 
   async function signup(inputs) {
     if (
@@ -63,7 +63,7 @@ function useSignupWithEmailAndPassword() {
           username: inputs.username,
           fullName: inputs.fullName,
           bio: "",
-          rofilePicURL: "",
+          profilePicURL: "",
           followers: [],
           following: [],
           posts: [],
@@ -71,7 +71,7 @@ function useSignupWithEmailAndPassword() {
         };
         await setDoc(doc(firestore, "users", newUser.user.uid), userDoc);
         localStorage.setItem("user-info", JSON.stringify(userDoc));
-        loginUser(userDoc);
+        loggedinUser(userDoc);
       }
     } catch (e) {
       showToast("error", e.message, "error");
